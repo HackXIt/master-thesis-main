@@ -1,3 +1,4 @@
 [submodule "paper"]
 	path = paper
 	url = ../master-thesis-paper
+    branch = main

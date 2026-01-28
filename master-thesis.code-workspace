@@ -18,6 +18,9 @@
             "**/Thumbs.db": true,
             "**/.vscode/.history": true,
             "paper/": true
-        }
+        },
+        "zotex.serverUrl": "http://172.20.128.1:23119",
+        "zotero-citation-picker.port": "http://172.20.128.1:23119/better-bibtex/cayw?format=pandoc"
     }
+}
 }
