@@ -20,7 +20,15 @@
             "paper/": true
         },
         "zotex.serverUrl": "http://172.20.128.1:23119",
-        "zotero-citation-picker.port": "http://172.20.128.1:23119/better-bibtex/cayw?format=pandoc"
+        "zotero-citation-picker.port": "http://172.20.128.1:23119/better-bibtex/cayw?format=pandoc",
+        "latex-workshop.formatting.latex": "latexindent",
+        "latex-workshop.formatting.latexindent.path": "latexindent",
+        "latex-workshop.formatting.latexindent.args": [
+            "-c",
+            "%DIR%/",
+            "%TMPFILE%",
+            "-y=defaultIndent: '  '"
+        ]
     }
 }
 }
