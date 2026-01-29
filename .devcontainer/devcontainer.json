@@ -1,0 +1,114 @@
+{
+    "name": "Master Thesis Development Environment",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": true
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "James-Yu.latex-workshop",
+                "tecosaur.latex-utilities",
+                "valentjn.vscode-ltex",
+                "streetsidesoftware.code-spell-checker",
+                "mblode.zotero",
+                "damiankoper.zotex",
+                "arturock.zotero-citation-picker",
+                "eamodio.gitlens",
+                "mhutchie.git-graph"
+            ],
+            "settings": {
+                "latex-workshop.latex.autoBuild.run": "onSave",
+                "latex-workshop.latex.recipes": [
+                    {
+                        "name": "latexmk (lualatex)",
+                        "tools": ["lualatexmk"]
+                    },
+                    {
+                        "name": "latexmk (pdflatex)",
+                        "tools": ["latexmk"]
+                    },
+                    {
+                        "name": "pdflatex -> bibtex -> pdflatex * 2",
+                        "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+                    }
+                ],
+                "latex-workshop.latex.tools": [
+                    {
+                        "name": "latexmk",
+                        "command": "latexmk",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "-pdf",
+                            "-outdir=%OUTDIR%",
+                            "%DOC%"
+                        ]
+                    },
+                    {
+                        "name": "lualatexmk",
+                        "command": "latexmk",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "-lualatex",
+                            "-outdir=%OUTDIR%",
+                            "%DOC%"
+                        ]
+                    },
+                    {
+                        "name": "pdflatex",
+                        "command": "pdflatex",
+                        "args": [
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "%DOC%"
+                        ]
+                    },
+                    {
+                        "name": "bibtex",
+                        "command": "bibtex",
+                        "args": ["%DOCFILE%"]
+                    }
+                ],
+                "latex-workshop.view.pdf.viewer": "tab",
+                "latex-workshop.formatting.latex": "latexindent",
+                "latex-workshop.formatting.latexindent.path": "latexindent",
+                "latex-workshop.formatting.latexindent.args": [
+                    "-c",
+                    "%DIR%/",
+                    "%TMPFILE%",
+                    "-y=defaultIndent: '  '"
+                ],
+                "ltex.language": "en-US",
+                "editor.wordWrap": "on",
+                "files.associations": {
+                    "*.tex": "latex",
+                    "*.bib": "bibtex"
+                }
+            }
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/post-create.sh",
+    "remoteUser": "vscode",
+    "containerEnv": {
+        "DISPLAY": ":0"
+    },
+    "forwardPorts": [23119],
+    "portsAttributes": {
+        "23119": {
+            "label": "Zotero Better BibTeX",
+            "onAutoForward": "ignore"
+        }
+    }
+}
